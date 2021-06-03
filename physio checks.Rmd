@@ -1,0 +1,27 @@
+---
+title: "ECG Checking"
+author: "Abbegail"
+date: "5/26/2021"
+output: html_document
+---
+
+```{r loading and filtering log file, echo = FALSE}
+physio <- read.table("/Users/abbegaillovette/physio5-26fromlog.log", sep="", quote = "", fill = TRUE, header = TRUE)
+phys_ECG1 <- physio %>% filter(CHANNEL == "ECG1")
+phys_ECG2 <- physio %>% filter(CHANNEL == "ECG2")
+phys_ECG3 <- physio %>% filter(CHANNEL == "ECG3")
+phys_ECG4 <- physio %>% filter(CHANNEL == "ECG4")
+
+physio_val <- physio %>% select("VALUE")
+ECG1 <- phys_ECG1 %>% select("VALUE")
+ECG2 <- phys_ECG2 %>% select("VALUE")
+ECG3 <- phys_ECG3 %>% select("VALUE")
+ECG4 <- phys_ECG4 %>% select("VALUE")
+```
+
+```{r}
+install.packages("devtools") 
+library(devtools)
+install_github("UNCDEPENdLab/experiment.pipeline")
+```
+
